@@ -18,6 +18,7 @@ int main( int argc, char* args[] ){
     if( SDL_Init( SDL_INIT_VIDEO ) < 0){
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
     }else{
+        
         //Create the window
         window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( window == NULL ){
@@ -33,7 +34,8 @@ int main( int argc, char* args[] ){
         //Get window to stay
         SDL_Event e; bool quit = false; while( quit == false ) { while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
     }
-        //Destroy window
+
+    //Destroy window
     SDL_DestroyWindow( window );
 
     //Quit SDL subsystems
