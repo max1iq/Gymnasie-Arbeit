@@ -20,7 +20,7 @@ int main( int argc, char* args[] ){
     }else{
         
         //Create the window
-        window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( window == NULL ){
             printf("Window is are belong to us");
         }
