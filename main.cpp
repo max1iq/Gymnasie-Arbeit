@@ -33,5 +33,11 @@ int main( int argc, char* args[] ){
         //Get window to stay
         SDL_Event e; bool quit = false; while( quit == false ) { while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
     }
+        //Destroy window
+    SDL_DestroyWindow( window );
 
+    //Quit SDL subsystems
+    SDL_Quit();
+
+    return 0;
 }
