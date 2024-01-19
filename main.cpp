@@ -1,4 +1,5 @@
 //Linking the standard IO and SDL2 headers
+#include <iostream>
 #include <stdio.h>
 #include </usr/include/SDL2/SDL.h>
 
