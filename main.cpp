@@ -1,46 +1,24 @@
 //Linking the standard IO and SDL2 headers
 #include <iostream>
 #include <stdio.h>
-#include </usr/include/SDL2/SDL.h>
+#include <SDL2/SDL.h>
 
 //Screen dimensions 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-int main( int argc, char* args[] ){
+int main(){
     
-    //The window
-    SDL_Window* window = NULL;
+    SDL_Init(SDL_INIT_VIDEO);
 
-    //The surface of the screen
-    SDL_Surface* screenSurface = NULL;
+    SDL_Window *window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
 
-    //Init SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0){
-        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-    }else{
-        
-        //Create the window
-        window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( window == NULL ){
-            printf("Window is are belong to us");
-        }
-        
-        //Get window surface
-        screenSurface = SDL_GetWindowSurface( window );
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-        //Fill the surface with a color
-        SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF) );
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
-        //Get window to stay
-        SDL_Event e; bool quit = false; while( quit == false ) { while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
-    }
+    SDL_RenderPresent(renderer);
 
-    //Destroy window
-    SDL_DestroyWindow( window );
+    SDL_Delay(3000);
 
-    //Quit SDL subsystems
-    SDL_Quit();
-
-    return 0;
 }
