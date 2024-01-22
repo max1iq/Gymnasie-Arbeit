@@ -1,26 +1,24 @@
 //Linking the standard IO and SDL2 headers
-#include <iostream>
-#include <stdio.h>
-#include <SDL2/SDL.h>
+#include "Game.hpp"
 
-//Screen dimensions 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+Game *game = nullptr;
 
-int main(){
+int main(int argc, char * args[]) {
+
+    game = new Game();
     
-    SDL_Init(SDL_INIT_VIDEO);
+    game->init("Mulle x Figge", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, true);
 
-    SDL_Window *window = SDL_CreateWindow("Mulle x Figge", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
+    while (game->running()) {
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+        game->handleEvents();
+        game->update();
+        game->render();
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    }
 
-    SDL_RenderClear(renderer);
-    
-    SDL_RenderPresent(renderer);
+    game->clean();
 
-    SDL_Delay(3000);
+    return 0;
 
 }
