@@ -1,5 +1,5 @@
-#ifndef game_hpp
-#define game_hpp
+#ifndef Game_hpp
+#define Game_hpp
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
