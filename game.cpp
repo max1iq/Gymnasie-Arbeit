@@ -2,7 +2,7 @@
 
 Game::Game() {
     SDL_Init(0);
-    SDL_CreateWindowAndRenderer(360, 240, 0, &win, &ren);
+    SDL_CreateWindowAndRenderer(640, 480, 0, &win, &ren);
     SDL_SetWindowTitle(win, "Mulle x Figge!!!!");
     running = true;
     count = 0;
@@ -38,8 +38,8 @@ void Game::render() {
     SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
     SDL_Rect rect;
     rect.x=rect.y=0;
-    rect.w=360;
-    rect.h=240;
+    rect.w=640;
+    rect.h=480;
     SDL_RenderFillRect(ren, &rect);
 
     frameCount++;
