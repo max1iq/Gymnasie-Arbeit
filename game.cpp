@@ -2,10 +2,13 @@
 
 Game::Game() {
     SDL_Init(0);
-    SDL_CreateWindowAndRenderer(640, 480, 0, &win, &ren);
+    SDL_CreateWindowAndRenderer(1280, 720, 0, &win, &ren);
     SDL_SetWindowTitle(win, "Mulle x Figge!!!!");
     running = true;
     count = 0;
+    gojo.setDest(0, 0, 1280, 720);
+    gojo.setSource(0, 0, 2560, 1440);
+    gojo.setImage("image.png", ren);
     loop();
 }
 
@@ -38,9 +41,11 @@ void Game::render() {
     SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
     SDL_Rect rect;
     rect.x=rect.y=0;
-    rect.w=640;
-    rect.h=480;
+    rect.w=0;
+    rect.h=0;
     SDL_RenderFillRect(ren, &rect);
+
+    draw(gojo);
 
     frameCount++;
     int timerFPS = SDL_GetTicks()-lastFrame;
@@ -49,4 +54,13 @@ void Game::render() {
     }
 
     SDL_RenderPresent(ren);
+}
+
+
+void Game::draw(Object o) {
+    SDL_Rect dest = o.getDest();
+    SDL_Rect src = o.getSource();
+    SDL_RenderCopyEx(ren, o.getTex(), &src, &dest, 0, NULL, SDL_FLIP_NONE);
+
+
 }
