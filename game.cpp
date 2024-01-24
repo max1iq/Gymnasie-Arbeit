@@ -9,8 +9,8 @@ Game::Game() {
     count = 0;
     gojo.setDest(0, 0, 1280, 720);
     gojo.setSource(0, 0, 2560, 1440);
-    gojo.setImage("image.png", ren);
-    font = TTF_OpenFont("Sans.ttf", 24);
+    gojo.setImage("image2.png", ren);
+    font = TTF_OpenFont("CC_Roman_Worlds.ttf", 50);
     loop();
 }
 
@@ -29,6 +29,7 @@ void Game::loop() {
     if(lastFrame >= (lastTime+1000)) {
         lastTime = lastFrame;
         frameCount = 0;
+
     }
 
     //cout << mousex << ", " << mousey << "\n";
@@ -48,7 +49,7 @@ void Game::render() {
     SDL_RenderFillRect(ren, &rect);
 
     draw(gojo);
-    draw("Nah, I'd Win", 20, 30, 0, 0, 0);
+    draw("NAH, I'D WIN", 835, 170, 0, 0, 0);
 
     frameCount++;
     int timerFPS = SDL_GetTicks()-lastFrame;
@@ -91,7 +92,7 @@ void Game::input() {
     while(SDL_PollEvent(&e)) {
         if(e.type == SDL_QUIT) {running = false; cout << "Quitting\n";}
         if(e.type == SDL_KEYDOWN) {
-            if(e.key.keysym.sym == SDLK_ESCAPE) running = false;
+            if(e.key.keysym.sym == SDLK_ESCAPE) {running = false;}
             if(e.key.keysym.sym == SDLK_w) {cout << "w down\n";}
         }
         if(e.type == SDL_KEYUP) {
