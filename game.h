@@ -1,11 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "object.h"
 #include <SDL2/SDL.h>
 #include <iostream>
 using namespace std;
 
-#include "object.h"
+
 
 class Game {
 public:
@@ -16,6 +17,7 @@ public:
     void input() {};
     void render();
     void draw(Object o);
+    void draw(const char* msg, int x, int y, int r, int g, int b, int size);
 private:
     SDL_Renderer* ren;
     SDL_Window* win;
