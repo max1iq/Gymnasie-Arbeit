@@ -10,6 +10,7 @@
                 "*.cpp",
                 "-lSDL2",
                 "-lSDL2_image",
+                "-lSDL2_ttf",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
