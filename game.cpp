@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game() {
-    SDL_Init(0);
+    SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(1280, 720, 0, &win, &ren);
     SDL_SetWindowTitle(win, "Mulle x Figge!!!!");
     TTF_Init();
@@ -11,6 +11,7 @@ Game::Game() {
     gojo.setSource(0, 0, 2560, 1440);
     gojo.setImage("image2.png", ren);
     font = TTF_OpenFont("CC_Roman_Worlds.ttf", 50);
+    effect.load("/home/max1iq/Gymnasie-Arbeit/audio.wav");
     loop();
 }
 
@@ -41,7 +42,7 @@ void Game::loop() {
 }
 
 void Game::render() {
-    SDL_SetRenderDrawColor(ren, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
     SDL_Rect rect;
     rect.x=rect.y=0;
     rect.w=1280;
@@ -49,7 +50,7 @@ void Game::render() {
     SDL_RenderFillRect(ren, &rect);
 
     draw(gojo);
-    draw("NAH, I'D WIN", 835, 170, 0, 0, 0);
+    draw("This text is rendered and is not an image", 0, 0, 0, 0, 0);
 
     frameCount++;
     int timerFPS = SDL_GetTicks()-lastFrame;
@@ -93,7 +94,7 @@ void Game::input() {
         if(e.type == SDL_QUIT) {running = false; cout << "Quitting\n";}
         if(e.type == SDL_KEYDOWN) {
             if(e.key.keysym.sym == SDLK_ESCAPE) {running = false;}
-            if(e.key.keysym.sym == SDLK_w) {cout << "w down\n";}
+            if(e.key.keysym.sym == SDLK_w) {cout << "w down\n"; effect.play();}
         }
         if(e.type == SDL_KEYUP) {
             if(e.key.keysym.sym == SDLK_w) {cout << "w up\n";}

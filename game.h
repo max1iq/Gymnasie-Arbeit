@@ -4,6 +4,7 @@
 #include "object.h"
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "audio.h"
 using namespace std;
 
 
@@ -27,6 +28,7 @@ private:
     int frameCount, timerFPS, lastFrame;
     Object gojo;
     int mousex, mousey;
+    Audio effect;
 };
 
 
