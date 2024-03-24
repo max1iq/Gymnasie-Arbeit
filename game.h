@@ -28,7 +28,10 @@ private:
     int frameCount, timerFPS, lastFrame;
     Object gojo;
     int mousex, mousey;
+    int textx, texty;
     Audio effect;
+    Audio peakygear;
+    Audio peakygear2;
 };
 
 

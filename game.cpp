@@ -11,7 +11,8 @@ Game::Game() {
     gojo.setSource(0, 0, 2560, 1440);
     gojo.setImage("image2.png", ren);
     font = TTF_OpenFont("CC_Roman_Worlds.ttf", 50);
-    effect.load("/home/max1iq/Gymnasie-Arbeit/audio.wav");
+    peakygear.load("/home/max1iq/Gymnasie-Arbeit/passion.wav");
+    peakygear2.load("/home/max1iq/Gymnasie-Arbeit/perfection.wav");
     loop();
 }
 
@@ -50,7 +51,7 @@ void Game::render() {
     SDL_RenderFillRect(ren, &rect);
 
     draw(gojo);
-    draw("This text is rendered and is not an image", 0, 0, 0, 0, 0);
+    draw("This text is rendered and is not an image", textx, texty, 0, 0, 0);
 
     frameCount++;
     int timerFPS = SDL_GetTicks()-lastFrame;
@@ -94,10 +95,17 @@ void Game::input() {
         if(e.type == SDL_QUIT) {running = false; cout << "Quitting\n";}
         if(e.type == SDL_KEYDOWN) {
             if(e.key.keysym.sym == SDLK_ESCAPE) {running = false;}
-            if(e.key.keysym.sym == SDLK_w) {cout << "w down\n"; effect.play();}
+            if(e.key.keysym.sym == SDLK_w) {cout << "w down\n"; peakygear2.play();}
+            if(e.key.keysym.sym == SDLK_s) {cout << "s down\n"; peakygear.play();}
+            if(e.key.keysym.sym == SDLK_DOWN) {cout << "arrow down\n"; texty = texty + 8;}
+            if(e.key.keysym.sym == SDLK_UP) {cout << "arrow up\n"; texty = texty - 8;}
+            if(e.key.keysym.sym == SDLK_LEFT) {cout << "arrow left\n"; textx = textx - 8;}
+            if(e.key.keysym.sym == SDLK_RIGHT) {cout << "arrow right\n"; textx = textx + 8;}
+            
         }
         if(e.type == SDL_KEYUP) {
             if(e.key.keysym.sym == SDLK_w) {cout << "w up\n";}
+            if(e.key.keysym.sym == SDLK_s) {cout << "s up\n";}
         }
         SDL_GetMouseState(&mousex, &mousey);
     }
