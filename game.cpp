@@ -3,16 +3,16 @@
 Game::Game() {
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(1280, 720, 0, &win, &ren);
-    SDL_SetWindowTitle(win, "Mulle x Figge!!!!");
+    SDL_SetWindowTitle(win, "Gymnasie-Arbeit");
     TTF_Init();
     running = true;
     count = 0;
     gojo.setDest(0, 0, 1280, 720);
-    gojo.setSource(0, 0, 2560, 1440);
+    gojo.setSource(0, 0, 1280, 720);
     gojo.setImage("image2.png", ren);
     font = TTF_OpenFont("CC_Roman_Worlds.ttf", 50);
-    peakygear.load("/home/max1iq/Gymnasie-Arbeit/passion.wav");
-    peakygear2.load("/home/max1iq/Gymnasie-Arbeit/perfection.wav");
+    peakygear.load("peakygear.wav");
+    peakygear2.load("perfection.wav");
     loop();
 }
 
@@ -49,11 +49,16 @@ void Game::render() {
     rect.w=1280;
     rect.h=720;
     SDL_RenderFillRect(ren, &rect);
-
-    draw(gojo);
-    draw("This text is rendered and is not an image", textx, texty, 0, 0, 0);
-
+    if(hasclicked >= 1 && totalFrame >= 5) {
+        draw(gojo);
+    }
+    draw("Ship", textx, texty, 0, 0, 0);
     frameCount++;
+    totalFrame++;
+    if(totalFrame < 5) {
+        hasclicked = 0;
+        std::cout << totalFrame << "\n";
+    }
     int timerFPS = SDL_GetTicks()-lastFrame;
     if(timerFPS<(1000/60)) {
         SDL_Delay((1000/60)-timerFPS);
@@ -89,9 +94,38 @@ void Game::draw(const char* msg, int x, int y, int r, int g, int b) {
     SDL_DestroyTexture(tex);
 }
 
+void Game::mousePress(SDL_MouseButtonEvent& b) {
+    std::cout << hasclicked << "\n";
+    if(b.button == SDL_BUTTON_LEFT){
+        if(mousex > 640) {
+        peakygear.play();
+        std::cout << "mousedown left\n";
+        hasclicked++;
+        }
+        if(mousex < 640) {
+        peakygear2.play();
+        std::cout << "lol mousedown left\n";
+        hasclicked++;
+        }
+    }    
+}
+
+
 void Game::input() {
     SDL_Event e;
     while(SDL_PollEvent(&e)) {
+        switch(e.type){
+            case SDL_QUIT:
+                running = false;
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                //do whatever you want to do after a mouse button was pressed,
+                // e.g.:
+                mousePress(e.button);
+                break;
+                
+
+        }            
         if(e.type == SDL_QUIT) {running = false; cout << "Quitting\n";}
         if(e.type == SDL_KEYDOWN) {
             if(e.key.keysym.sym == SDLK_ESCAPE) {running = false;}
@@ -109,4 +143,5 @@ void Game::input() {
         }
         SDL_GetMouseState(&mousex, &mousey);
     }
+    
 }

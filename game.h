@@ -19,19 +19,21 @@ public:
     void render();
     void draw(Object o);
     void draw(const char* msg, int x, int y, int r, int g, int b);
+    void mousePress(SDL_MouseButtonEvent& b);
 private:
     SDL_Renderer* ren;
     SDL_Window* win;
     TTF_Font* font;
     bool running;
     int count;
-    int frameCount, timerFPS, lastFrame;
+    int frameCount, timerFPS, lastFrame, totalFrame;
     Object gojo;
     int mousex, mousey;
     int textx, texty;
     Audio effect;
     Audio peakygear;
     Audio peakygear2;
+    int hasclicked;
 };
 
 

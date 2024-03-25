@@ -2,7 +2,7 @@
 
 Audio::~Audio() {
     SDL_CloseAudioDevice(deviceId);
-    SDL_FreeWAV(wavBuffer);
+
 }
 
 void Audio::load(const char* filename) {

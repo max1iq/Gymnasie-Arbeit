@@ -13,8 +13,6 @@ private:
     Uint32 wavLength;
     Uint8 *wavBuffer;
     SDL_AudioDeviceID deviceId;
-
-
 };
 
 #endif //AUDIO_H
